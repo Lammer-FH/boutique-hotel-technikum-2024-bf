@@ -36,8 +36,11 @@ public class Mapper {
         Room room = roomService.getRoomById(bookingDTO.getRoomId());
         booking.setRoom(room);
 
-        User user = userService.findById(bookingDTO.getUserId());
-        booking.setUser(user);
+        // If userId is not null, we assume the user is already registered
+        if (bookingDTO.getUserId() != null) {
+            User user = userService.findById(bookingDTO.getUserId());
+            booking.setUser(user);
+        }
 
         return booking;
     }
@@ -52,7 +55,9 @@ public class Mapper {
         dto.setLastName(booking.getLastName());
         dto.setEmail(booking.getEmail());
         dto.setRoomId(booking.getRoom().getId());
-        dto.setUserId(booking.getUser().getId());
+        if (booking.getUser() != null) {
+            dto.setUserId(booking.getUser().getId());
+        }
         return dto;
     }
 
@@ -84,7 +89,6 @@ public class Mapper {
 
     public User mapToUser(UserDTO userDTO) {
         User user = new User();
-        user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -94,11 +98,14 @@ public class Mapper {
 
     public UserDTO mapToUserDTO(User user) {
         UserDTO dto = new UserDTO();
-        dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
         return dto;
+    }
+
+    public List<BookingDTO> mapToBookingDTOList(List<Booking> bookings) {
+        return bookings.stream().map(this::mapToBookingDTO).collect(Collectors.toList());
     }
 }

@@ -2,17 +2,17 @@ package hotel.group_bf.service;
 
 import hotel.group_bf.entity.Booking;
 import hotel.group_bf.repository.BookingRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookingService {
 
-    @Autowired
-    private BookingRepository bookingRepository;
+    private final BookingRepository bookingRepository;
 
     public Booking saveBooking(Booking booking) {
         return bookingRepository.save(booking);
@@ -43,9 +43,5 @@ public class BookingService {
 
     public Booking getBookingById(Long id) {
         return bookingRepository.findById(id).orElseThrow(() -> new RuntimeException("Booking not found"));
-    }
-
-    public void deleteBookingById(Long id) {
-        bookingRepository.deleteById(id);
     }
 }
