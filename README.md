@@ -34,8 +34,8 @@ cd FRONTEND
 npm install
 ```
 
-Run the application:
+Run the application using ionic:
 
 ```bash
-npm run dev
+npx @ionic/cli serve
 ```
