@@ -37,5 +37,5 @@ npm install
 Run the application using ionic:
 
 ```bash
-npx @ionic/cli serve
+npm run dev
 ```
