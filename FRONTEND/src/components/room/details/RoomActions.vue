@@ -1,6 +1,6 @@
 <template>
     <div class="room-actions">
-        <ion-button :router-link="`/book/${ roomId }`">
+        <ion-button @click="emit('click')">
             Jetzt buchen
             <ion-icon slot="end" :icon="bedOutline"></ion-icon>
         </ion-button>
@@ -11,6 +11,8 @@
     import { IonButton, IonIcon } from '@ionic/vue';
     import { bedOutline } from 'ionicons/icons';
     import { defineProps } from 'vue';
+
+    const emit = defineEmits(['click'])
 
     defineProps<{
         roomId: number;

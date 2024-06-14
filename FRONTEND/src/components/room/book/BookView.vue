@@ -6,13 +6,13 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <BookPage />
+            <BookForm />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import BookPage from './BookPage.vue';
+    import BookForm from './BookForm.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 

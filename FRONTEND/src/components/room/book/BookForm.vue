@@ -9,16 +9,9 @@
 <script setup lang="ts">
     import { IonCard, IonCardContent } from '@ionic/vue';
     import DatePicker from './DatePicker.vue';
-    import { defineProps, onMounted } from 'vue';
-    import { useRoomStore } from '../../stores/room';
+    import { defineProps } from 'vue';
 
     defineProps<{
-        roomId: string
-    }>()
-
-    const roomStore = useRoomStore();
-
-    onMounted(async () => {
-        await roomStore.fetchRoom(Number(roomId));
-    });
+        room: Room
+    }>();
 </script>

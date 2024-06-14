@@ -17,9 +17,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/room/RoomView.vue')
     },
     {
-        path: '/book/:id',
-        name: 'book',
-        component: () => import('../components/book/BookView.vue')
+        path: '/:pathMatch(.*)*',
+        redirect: '/home'
     }
 ]
 
