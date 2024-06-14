@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
-import http from '../axios';
 import { ref } from 'vue';
 import { Room } from '../types/Room';
+import * as service from '../services/RoomService';
 
 export const useRoomsStore = defineStore('rooms', () => {
     const rooms = ref<any[]>([]);
@@ -12,10 +12,8 @@ export const useRoomsStore = defineStore('rooms', () => {
 
     async function fetchRooms() {
         try {
-            const result = await http.get<Room[]>('/rooms');
-
-            if (result.status === 200)
-                initRooms(result.data);
+            const rooms = await service.fetchRooms()
+            initRooms(rooms);
         } catch (error) {
             console.error('error', error)
         }
