@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-    import BookPage from '../components/book/BookPage.vue';
+    import BookPage from './BookPage.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 

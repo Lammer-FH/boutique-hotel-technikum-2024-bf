@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-    import RoomList from '../components/home/RoomList.vue'
+    import RoomList from './RoomList.vue'
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 

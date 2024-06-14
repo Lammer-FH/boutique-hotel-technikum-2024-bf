@@ -9,17 +9,17 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/home',
         name: 'home',
-        component: () => import('../views/HomeView.vue')
+        component: () => import('../components/home/HomeView.vue')
     },
     {
         path: '/room/:id',
         name: 'room',
-        component: () => import('../views/RoomView.vue')
+        component: () => import('../components/room/RoomView.vue')
     },
     {
         path: '/book/:id',
         name: 'book',
-        component: () => import('../views/BookView.vue')
+        component: () => import('../components/book/BookView.vue')
     }
 ]
 
