@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-    import { IonApp, IonRouterOutlet } from '@ionic/vue';
+    import { IonApp, IonRouterOutlet, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 
 <style scoped>

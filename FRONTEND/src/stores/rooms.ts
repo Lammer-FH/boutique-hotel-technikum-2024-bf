@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { Room } from '../types/Room';
-import * as service from '../services/RoomService';
+import * as roomsService from '../services/RoomService';
 
 export const useRoomsStore = defineStore('rooms', () => {
-    const rooms = ref<any[]>([]);
+    const rooms = ref<Room[]>([]);
 
     function initRooms(data: Room[]) {
         rooms.value = data;
@@ -12,10 +12,10 @@ export const useRoomsStore = defineStore('rooms', () => {
 
     async function fetchRooms() {
         try {
-            const rooms = await service.fetchRooms()
+            const rooms = await roomsService.fetchRooms();
             initRooms(rooms);
         } catch (error) {
-            console.error('error', error)
+            console.error('error', error);
         }
     }
 

@@ -1,12 +1,12 @@
 <template>
     <ion-page>
         <ion-content :fullscreen="true">
-            <RoomList />
+            <RoomDetail />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import RoomList from '../components/home/RoomList.vue'
+    import RoomDetail from '../components/room-detail/RoomDetail.vue';
     import { IonContent, IonPage } from '@ionic/vue';
 </script>
