@@ -1,4 +1,9 @@
 <template>
+    <div v-if="isLoading">
+        <div v-for="i in 10" :key="i">
+            <SkeletonCard />
+        </div>
+    </div>
     <div v-if="roomsStore.rooms.length === 0">
         <p>No rooms found</p>
     </div>
@@ -7,16 +12,42 @@
             <RoomCard :room="room" />
         </div>
     </div>
+    <PageControls
+        :current-page="roomsStore.currentPage"
+        :is-first-page="roomsStore.isFirstPage"
+        :is-last-page="roomsStore.isLastPage"
+        @prev="prevPage"
+        @next="nextPage" />
 </template>
 
 <script setup lang="ts">
     import RoomCard from './RoomCard.vue';
+    import PageControls from './PageControls.vue';
+    import SkeletonCard from './SkeletonCard.vue';
     import { useRoomsStore } from '../../stores/rooms';
-    import { onMounted } from 'vue';
+    import { onMounted, ref } from 'vue';
 
     const roomsStore = useRoomsStore();
 
+    const isLoading = ref(true);
+
+    async function prevPage() {
+        await roomsStore.decrementPage();
+        scrollToTop();
+    }
+
+    async function nextPage() {
+        await roomsStore.incrementPage();
+        scrollToTop();
+    }
+
+    function scrollToTop() {
+        document.getElementById('app')
+            .scrollIntoView({ behavior: 'smooth' });
+    }
+
     onMounted(async () => {
         await roomsStore.fetchRooms();
+        isLoading.value = false;
     });
 </script>

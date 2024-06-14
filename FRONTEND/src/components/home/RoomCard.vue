@@ -1,6 +1,6 @@
 <template>
     <ion-card>
-        <img src="/img/hotel-room.jpg" alt="Room" />
+        <img src="/img/hotel-room.jpg" alt="Room" style="width: 100%; height: 279.5px;" />
         <ion-card-header>
             <ion-card-title>
                 {{ room.title }}

@@ -3,6 +3,9 @@
         <ion-card-content>
             Von: <DatePicker />
         </ion-card-content>
+        <ion-card-content>
+            Bis: <DatePicker />
+        </ion-card-content>
     </ion-card>
 </template>
 

@@ -1,9 +1,12 @@
 import http from '../axios';
 import { Room } from '../types/Room';
 
-export async function fetchRooms(): Promise<Room[]> {
+export async function fetchRooms(page: number, size: number): Promise<Room[]> {
     try {
-        const result = await http.get<Room[]>('/rooms');
+        const result = await http.get<Room[]>(
+            '/rooms/page',
+            { params: { page, size } }
+        );
 
         if (result.status === 200)
             return Promise.resolve(result.data);
