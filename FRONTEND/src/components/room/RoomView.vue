@@ -2,6 +2,9 @@
     <ion-page>
         <ion-header :translucent="true">
             <ion-toolbar>
+                <ion-buttons slot="start">
+                    <BackButton />
+                </ion-buttons>
                 <ion-title>{{ roomStore.room?.title }}</ion-title>
             </ion-toolbar>
         </ion-header>
@@ -17,7 +20,8 @@
 <script setup lang="ts">
     import RoomDetail from './RoomDetail.vue';
     import BookingModal from './BookingModal.vue';
-    import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
+    import BackButton from './BackButton.vue';
+    import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
     import { useRoomStore } from '../../stores/room';
     import { onMounted, watch, ref } from 'vue';
     import { useRoute } from 'vue-router';

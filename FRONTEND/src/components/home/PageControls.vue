@@ -1,10 +1,10 @@
 <template>
     <div class="page-controls">
-        <ion-button @click="emit('prev')" :disabled="isFirstPage">
+        <ion-button @click="emit('prev')" :disabled="isFirstPage" fill="clear">
             <ion-icon :icon="chevronBackOutline"></ion-icon>
         </ion-button>
         <div>{{ currentPage + 1 }}</div>
-        <ion-button @click="emit('next')" :disabled="isLastPage">
+        <ion-button @click="emit('next')" :disabled="isLastPage" fill="clear">
             <ion-icon :icon="chevronForwardOutline"></ion-icon>
         </ion-button>
     </div>
