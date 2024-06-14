@@ -2,17 +2,17 @@
     <ion-page>
         <ion-header :translucent="true">
             <ion-toolbar>
-                <ion-title>Home</ion-title>
+                <ion-title>Room</ion-title>
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <RoomList />
+            <RoomDetail />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import RoomList from '../components/home/RoomList.vue'
+    import RoomDetail from '../components/room-detail/RoomDetail.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 

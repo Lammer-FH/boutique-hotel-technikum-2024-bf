@@ -11,6 +11,9 @@ export const useRoomStore = defineStore('room', () => {
     }
 
     async function fetchRoom(id: number) {
+        if (room.value?.id === id)
+            return;
+
         try {
             const room = await roomsService.fetchRoomById(id);
             initRoom(room);

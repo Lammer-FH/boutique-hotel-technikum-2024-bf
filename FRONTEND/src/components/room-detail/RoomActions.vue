@@ -1,6 +1,6 @@
 <template>
     <div class="room-actions">
-        <ion-button>
+        <ion-button :router-link="`/book/${ roomId }`">
             Jetzt buchen
             <ion-icon slot="end" :icon="bedOutline"></ion-icon>
         </ion-button>
@@ -13,7 +13,7 @@
     import { defineProps } from 'vue';
 
     defineProps<{
-        roomId?: number;
+        roomId: number;
     }>();
 </script>
 
