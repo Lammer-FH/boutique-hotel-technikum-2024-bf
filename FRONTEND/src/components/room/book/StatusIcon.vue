@@ -1,6 +1,6 @@
 <template>
     <ion-spinner v-if="loading" />
-    <ion-icon v-else :icon="value ? checkmarkCircleOutline : closeCircleOutline"></ion-icon>
+    <ion-icon v-else :icon="value ? checkmarkCircleOutline : closeCircleOutline" :color="value ? 'success' : 'danger'"></ion-icon>
 </template>
 
 <script setup lang="ts">
