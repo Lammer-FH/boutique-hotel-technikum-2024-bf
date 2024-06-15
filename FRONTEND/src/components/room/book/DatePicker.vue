@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
     import { IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
-    import { watch, defineModel, computed } from 'vue';
+    import { defineModel, computed } from 'vue';
 
     const props = defineProps<{
         id: string;
@@ -22,15 +22,13 @@
     }>();
 
     const date = defineModel<Date>({ required: true });
-    const minString = computed(() => toISOString(props.min));
+
     const dateString = computed({
-        get() {
-            return toISOString(date.value);
-        },
-        set(value) {
-            date.value = new Date(value);
-        }
+        get: () => toISOString(date.value),
+        set: value => date.value = new Date(value)
     });
+
+    const minString = computed(() => toISOString(props.min));
 
     function toISOString(date: Date) {
         return date.toISOString().split('T')[0];

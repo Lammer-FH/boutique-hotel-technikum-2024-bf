@@ -1,44 +1,67 @@
 <template>
     <ion-card>
         <ion-card-content>
-            Von: <DatePicker v-model="startDate" :min="minStartDate" id="startDate" />
-        </ion-card-content>
-        <ion-card-content>
-            Bis: <DatePicker v-model="endDate" :min="minEndDate" id="endDate" />
+            <div class="date-container">
+                <ion-label>Von</ion-label>
+                <DatePicker v-model="startDate" :min="minStartDate" id="startDate" />
+            </div>
+            <div class="date-container">
+                <ion-label>Bis</ion-label>
+                <DatePicker v-model="endDate" :min="minEndDate" id="endDate" />
+            </div>
+            <div class="status-icon">
+                <StatusIcon :value="isAvailable" :loading="isLoading" />
+            </div>
         </ion-card-content>
     </ion-card>
 </template>
 
 <script setup lang="ts">
-    import { IonCard, IonCardContent } from '@ionic/vue';
+    import { IonCard, IonCardContent, IonLabel } from '@ionic/vue';
     import DatePicker from './DatePicker.vue';
-    import { computed,  defineProps, ref, watch } from 'vue';
+    import StatusIcon from './StatusIcon.vue';
+    import { onMounted, watch, toRefs } from 'vue';
+    import { useBookingStore } from '../../../stores/booking';
 
-    const ONE_DAY = 24 * 60 * 60 * 1000;
-
-    const startDate = ref<Date>(new Date());
-    const minStartDate = ref<Date>(new Date());
-    const minEndDate = computed(() => new Date(startDate.value.valueOf() + ONE_DAY));
-    const endDateHelper = ref<Date>(addDays(startDate.value, 1));
-    const endDate = computed({
-        get() {
-            if (endDateHelper.value.valueOf() < minEndDate.value.valueOf())
-                return minEndDate.value;
-            else
-                return endDateHelper.value;
-        },
-        set(value) {
-            endDateHelper.value = value;
-        }
-    });
-
-    function addDays(date: Date, days: number) {
-        const result = new Date(date.valueOf() + days * ONE_DAY);
-        console.log('add',result);
-        return result;
-    }
-
-    defineProps<{
+    const props = defineProps<{
         room: Room;
     }>();
+
+    const bookingStore = useBookingStore();
+
+    const { 
+        isAvailable, 
+        isLoading, 
+        startDate, 
+        endDate, 
+        minStartDate, 
+        minEndDate, 
+    } = toRefs(bookingStore);
+
+    watch(() => [startDate.value, endDate.value], async () => {
+        await bookingStore.fetchAvailability(props.room.id);
+    });
+
+    onMounted(async () => {
+        await bookingStore.fetchAvailability(props.room.id);
+    });
 </script>
+
+<style scoped>
+    ion-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5em;
+    }
+    .date-container {
+        display: inline-flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+    }
+    .status-icon {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+    }
+</style>

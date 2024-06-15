@@ -12,10 +12,6 @@ export const useRoomsStore = defineStore('rooms', () => {
     const isFirstPage = computed(() => currentPage.value === 0);
     const isLastPage = computed(() => rooms.value.length < PAGE_SIZE);
 
-    function initRooms(data: Room[]) {
-        rooms.value = data;
-    }
-
     async function incrementPage() {
         currentPage.value++;
         await fetchRooms();
@@ -28,8 +24,7 @@ export const useRoomsStore = defineStore('rooms', () => {
 
     async function fetchRooms() {
         try {
-            const rooms = await roomsService.fetchRooms(currentPage.value, PAGE_SIZE);
-            initRooms(rooms);
+            rooms.value = await roomsService.fetchRooms(currentPage.value, PAGE_SIZE);
         } catch (error) {
             console.error('error', error);
         }
