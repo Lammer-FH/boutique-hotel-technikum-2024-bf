@@ -1,16 +1,38 @@
 <template>
-  <ion-datetime-button v-model="date" datetime="datetime"></ion-datetime-button>
+    <ion-datetime-button
+        :datetime="id"
+        presentation="date"></ion-datetime-button>
 
-  <ion-modal :keep-contents-mounted="true">
-    <ion-datetime id="datetime"></ion-datetime>
-  </ion-modal>
+    <ion-modal :keep-contents-mounted="true">
+        <ion-datetime
+            :id="id"
+            v-model="dateString"
+            presentation="date"
+            :min="minString"></ion-datetime>
+    </ion-modal>
 </template>
 
 <script setup lang="ts">
-  import { IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
-  import { ref, watch } from 'vue';
+    import { IonDatetime, IonDatetimeButton, IonModal } from '@ionic/vue';
+    import { watch, defineModel, computed } from 'vue';
 
-  const date = ref();
+    const props = defineProps<{
+        id: string;
+        min: Date;
+    }>();
 
-  watch(date, (date) => console.log(date));
+    const date = defineModel<Date>({ required: true });
+    const minString = computed(() => toISOString(props.min));
+    const dateString = computed({
+        get() {
+            return toISOString(date.value);
+        },
+        set(value) {
+            date.value = new Date(value);
+        }
+    });
+
+    function toISOString(date: Date) {
+        return date.toISOString().split('T')[0];
+    }
 </script>
