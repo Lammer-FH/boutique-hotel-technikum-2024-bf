@@ -20,6 +20,7 @@
         isFirstPage: boolean;
         isLastPage: boolean;
     }>();
+
     const emit = defineEmits(['prev', 'next'])
 </script>
 

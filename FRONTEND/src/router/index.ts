@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../components/room/RoomView.vue')
     },
     {
+        path: '/register',
+        name: 'register',
+        component: () => import('../components/register/RegisterView.vue')
+    },
+    {
         path: '/:pathMatch(.*)*',
         redirect: '/home'
     }

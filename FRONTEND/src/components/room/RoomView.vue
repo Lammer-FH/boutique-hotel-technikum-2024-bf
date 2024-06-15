@@ -20,7 +20,7 @@
 <script setup lang="ts">
     import RoomDetail from './RoomDetail.vue';
     import BookingModal from './BookingModal.vue';
-    import BackButton from './BackButton.vue';
+    import BackButton from '../shared/BackButton.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
     import { useRoomStore } from '../../stores/room';
     import { onMounted, watch, ref } from 'vue';
