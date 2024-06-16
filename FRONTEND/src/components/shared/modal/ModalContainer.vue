@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
     import { IonModal, IonHeader, IonToolbar, IonContent, IonButton, IonButtons, IonTitle } from '@ionic/vue';
-    import { defineProps } from 'vue';
 
     const isOpen = defineModel<boolean>();
     const emit = defineEmits(['close', 'confirm']);

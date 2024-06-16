@@ -10,7 +10,6 @@
 <script setup lang="ts">
     import { IonButton, IonIcon } from '@ionic/vue';
     import { bedOutline } from 'ionicons/icons';
-    import { defineProps } from 'vue';
 
     const emit = defineEmits(['click'])
 

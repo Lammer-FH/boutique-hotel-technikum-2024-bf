@@ -20,7 +20,6 @@
 <script setup lang="ts">
     import { Room } from '../../types/Room';
     import ModalContainer from '../shared/modal/ModalContainer.vue';
-    import { defineProps } from 'vue';
     import { useBookingStore } from '../../stores/booking';
 
     const isOpen = defineModel<boolean>();
