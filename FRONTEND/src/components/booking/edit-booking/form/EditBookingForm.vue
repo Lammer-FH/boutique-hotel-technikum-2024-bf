@@ -9,47 +9,38 @@
                 <ion-label>Bis</ion-label>
                 <DatePicker v-model="endDate" :min="minEndDate" id="endDate" />
             </div>
-            <div class="ceneterd-container">
+            <div class="centered-container">
                 <StatusIcon :value="isAvailable" :loading="isLoading" />
-            </div>
-            <div v-if="!isRegistered" class="ceneterd-container">
-                <ion-text color="danger">
-                    <p>User muss registriert sein</p>
-                </ion-text>
             </div>
         </ion-card-content>
     </ion-card>
 </template>
 
 <script setup lang="ts">
-    import { IonCard, IonCardContent, IonLabel, IonText } from '@ionic/vue';
-    import DatePicker from './DatePicker.vue';
-    import StatusIcon from './StatusIcon.vue';
+    import { IonCard, IonCardContent, IonLabel } from '@ionic/vue';
+    import DatePicker from '@/components/shared/fields/DatePicker.vue';
+    import StatusIcon from '@/components/shared/fields/StatusIcon.vue';
     import { onMounted, watch, toRefs } from 'vue';
-    import { useBookingStore } from '@/stores/booking';
+    import { useEditBookingStore } from '@/stores/edit-booking';
 
-    const props = defineProps<{
-        room: Room;
-        isRegistered: boolean;
-    }>();
-
-    const bookingStore = useBookingStore();
-
-    const { 
-        isAvailable, 
-        isLoading, 
-        startDate, 
-        endDate, 
-        minStartDate, 
-        minEndDate, 
+    const bookingStore = useEditBookingStore();
+    const {
+        isAvailable,
+        isLoading,
+        booking,
+        endDate,
+        startDate,
+        minStartDate,
+        minEndDate,
     } = toRefs(bookingStore);
 
-    watch(() => [startDate.value, endDate.value], async () => {
-        await bookingStore.fetchAvailability(props.room.id);
+
+    watch(() => [booking.value.startDate, booking.value.endDate], async () => {
+        await bookingStore.fetchAvailability(booking.value.roomId);
     });
 
     onMounted(async () => {
-        await bookingStore.fetchAvailability(props.room.id);
+        await bookingStore.fetchAvailability(booking.value.roomId);
     });
 </script>
 
@@ -65,7 +56,7 @@
         align-items: center;
         width: 100%;
     }
-    .ceneterd-container {
+    .centered-container {
         width: 100%;
         display: inline-flex;
         justify-content: center;

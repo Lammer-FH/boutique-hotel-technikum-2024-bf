@@ -6,14 +6,30 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <BookingList />
+            <BookingList @edit="editBooking" />
+            <EditBookingModal v-model="isEditBookingModalOpen" @close="refreshBookings" />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
     import BookingList from '@/components/booking/BookingList.vue'
+    import EditBookingModal from '@/components/booking/edit-booking/EditBookingModal.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
+    import { ref } from 'vue';
+    import { useBookingsStore } from '@/stores/bookings';
+
+    const bookingsStore = useBookingsStore();
+
+    const isEditBookingModalOpen = ref<boolean>(false);
+
+    function editBooking() {
+        isEditBookingModalOpen.value = true;
+    }
+
+    async function refreshBookings() {
+        await bookingsStore.fetchBookings();
+    }
 </script>
 
 <style scoped>

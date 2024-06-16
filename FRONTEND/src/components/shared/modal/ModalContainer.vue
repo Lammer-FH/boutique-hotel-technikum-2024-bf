@@ -32,8 +32,8 @@
     });
 
     function cancel() {
-        setOpen(false);
         emit('close');
+        setOpen(false);
     }
 
     function confirm(): void {

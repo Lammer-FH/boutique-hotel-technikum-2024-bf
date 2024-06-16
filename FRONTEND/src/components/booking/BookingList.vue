@@ -4,7 +4,7 @@
     </div>
     <div v-else>
         <div v-for="booking in bookingsStore.bookings" :key="booking.id">
-            <BookingCard :booking="booking" />
+            <BookingCard :booking="booking" @edit="editBooking" />
         </div>
     </div>
 </template>
@@ -15,6 +15,7 @@
     import { onMounted, ref } from 'vue';
 
     const bookingsStore = useBookingsStore();
+    const emit = defineEmits(['edit'])
 
     const isLoading = ref(true);
 
@@ -23,4 +24,7 @@
         isLoading.value = false;
     });
 
+    function editBooking(booking: Booking) {
+        emit('edit', booking);
+    }
 </script>

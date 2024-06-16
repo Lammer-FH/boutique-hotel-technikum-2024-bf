@@ -30,7 +30,9 @@
     } from '@ionic/vue';
     import { useRoomStore } from '@/stores/room';
     import { computed, onMounted } from 'vue';
+    import { useEditBookingStore } from '@/stores/edit-booking';
 
+    const editBookingStore = useEditBookingStore();
     const roomStore = useRoomStore();
     const props = defineProps<{
         booking: Booking;
@@ -40,14 +42,14 @@
         return `${new Date(props.booking.startDate).toLocaleDateString()} - ${new Date(props.booking.endDate).toLocaleDateString()}`;
     });
 
-    // const emit = defineEmits(['delete'])
+    const emit = defineEmits(['edit'])
 
     onMounted(async () => {
         await roomStore.fetchRoom(props.booking.roomId);
     });
 
     function editBooking() {
-        console.log('editBooking');
-        throw new Error('Method not implemented.');
+        editBookingStore.initBooking(props.booking);
+        emit('edit', props.booking);
     }
 </script>

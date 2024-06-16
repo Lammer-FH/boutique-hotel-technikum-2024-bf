@@ -42,9 +42,45 @@ export async function createBooking(booking: Booking): Promise<Booking> {
     return Promise.reject('error');
 }
 
+export async function updateBooking(booking: Booking): Promise<Booking> {
+    const startDateString = formatDate(booking.startDate);
+    const endDateString = formatDate(booking.endDate);
+    const newBooking = {
+        ...booking,
+        startDate: startDateString,
+        endDate: endDateString
+    };
+
+    try {
+        const result = await http.put<Booking>(`/bookings/${booking.id}`, newBooking);
+
+        if (result.status === 200)
+            return Promise.resolve(result.data);
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}
+
 export async function fetchBookings(): Promise<Booking[]> {
     try {
         const result = await http.get<Booking[]>('/bookings');
+
+        if (result.status === 200)
+            return Promise.resolve(result.data);
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}
+
+export async function fetchBookingById(id: number): Promise<Booking> {
+    try {
+        const result = await http.get<Booking>(`/bookings/${id}/confirmation`);
 
         if (result.status === 200)
             return Promise.resolve(result.data);

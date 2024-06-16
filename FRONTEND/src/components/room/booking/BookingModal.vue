@@ -1,12 +1,12 @@
 <template>
     <ModalContainer v-model="isOpen" :confirm-disabled="!bookingStore.isAvailable || !userStore.isRegistered" @confirm="confirm">
-        <BookForm :room="room" :isRegistered="userStore.isRegistered" />
+        <AddBookingForm :room="room" :isRegistered="userStore.isRegistered" />
     </ModalContainer>
 </template>
 
 <script setup lang="ts">
     import { Room } from '@/types/Room';
-    import BookForm from './booking/BookForm.vue';
+    import AddBookingForm from './form/AddBookingForm.vue';
     import ModalContainer from '@/components/shared/modal/ModalContainer.vue';
     import { useBookingStore } from '@/stores/booking';
     import { useUserStore } from '@/stores/user';
@@ -23,7 +23,6 @@
     async function confirm() {
         try {
             await bookingStore.createBooking(userStore.user, props.room.id);
-            isOpen.value = false;
         } catch (error) {
             console.error('error', error);
         }
