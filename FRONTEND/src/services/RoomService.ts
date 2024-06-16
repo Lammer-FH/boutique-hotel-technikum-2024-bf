@@ -31,3 +31,17 @@ export async function fetchRoomById(id: number): Promise<Room> {
 
     return Promise.reject('error');
 }
+
+export async function deleteRoom(id: number): Promise<void> {
+    try {
+        const result = await http.delete<void>(`/rooms/${id}`);
+
+        if (result.status === 204)
+            return Promise.resolve();
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}

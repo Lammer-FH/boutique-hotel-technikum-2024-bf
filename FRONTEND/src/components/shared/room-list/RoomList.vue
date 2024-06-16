@@ -9,7 +9,7 @@
     </div>
     <div v-else>
         <div v-for="room in roomsStore.rooms" :key="room.id">
-            <RoomCard :room="room" />
+            <RoomCard :isAdmin="isAdmin" :room="room" @delete="deleteRoom" />
         </div>
     </div>
     <PageControls
@@ -24,10 +24,14 @@
     import RoomCard from './RoomCard.vue';
     import PageControls from './PageControls.vue';
     import SkeletonCard from './SkeletonCard.vue';
-    import { useRoomsStore } from '../../stores/rooms';
+    import { useRoomsStore } from '../../../stores/rooms';
     import { onMounted, ref } from 'vue';
 
     const roomsStore = useRoomsStore();
+
+    defineProps<{
+        isAdmin: boolean;
+    }>();
 
     const isLoading = ref(true);
 
@@ -50,4 +54,8 @@
         await roomsStore.fetchRooms();
         isLoading.value = false;
     });
+
+    async function deleteRoom(id: number) {
+        await roomsStore.deleteRoom(id);
+    }
 </script>

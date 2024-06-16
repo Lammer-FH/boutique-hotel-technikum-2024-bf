@@ -4,18 +4,20 @@
             <ion-toolbar>
                 <ion-title>Home</ion-title>
                 <ion-buttons slot="end">
+                    <AdminButton />
                     <RegisterButton />
                 </ion-buttons>
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <RoomList />
+            <RoomList :isAdmin="false" />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import RoomList from './RoomList.vue'
+    import RoomList from '../shared/room-list/RoomList.vue'
+    import AdminButton from './AdminButton.vue';
     import RegisterButton from './RegisterButton.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
 </script>

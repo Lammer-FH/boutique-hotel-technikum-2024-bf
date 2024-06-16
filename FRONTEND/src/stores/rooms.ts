@@ -30,5 +30,14 @@ export const useRoomsStore = defineStore('rooms', () => {
         }
     }
 
-    return { rooms, fetchRooms, currentPage, incrementPage, decrementPage, isFirstPage, isLastPage };
+    async function deleteRoom(id: number) {
+        try {
+            await roomsService.deleteRoom(id);
+            await fetchRooms();
+        } catch (error) {
+            console.error('error', error);
+        }
+    }
+
+    return { rooms, fetchRooms, deleteRoom, currentPage, incrementPage, decrementPage, isFirstPage, isLastPage };
 });

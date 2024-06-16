@@ -12,8 +12,11 @@
         <ion-card-content>
             {{ room.description }}
         </ion-card-content>
-        <ion-button fill="clear" :router-link="`/room/${ room.id }`">
+        <ion-button v-if="!isAdmin" fill="clear" :router-link="`/room/${ room.id }`">
             Jetzt buchen
+        </ion-button>
+        <ion-button v-else fill="clear" @click="emit('delete', room.id)">
+            Löschen
         </ion-button>
     </ion-card>
 </template>
@@ -28,5 +31,12 @@
         IonCardTitle,
         IonCardContent
     } from '@ionic/vue';
-    defineProps<{ room: Room }>()
+
+    const emit = defineEmits(['delete'])
+
+    defineProps<{
+        room: Room;
+        isAdmin: boolean;
+    }>()
+
 </script>
