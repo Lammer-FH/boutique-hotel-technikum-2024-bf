@@ -1,5 +1,5 @@
 <template>
-    <ion-button @click="router.push('/admin/add-room')" fill="clear">
+    <ion-button @click="emit('click')" fill="clear">
         <div class="button-content">
             <div>Zimmer hinzufügen</div>
             <ion-icon :icon="addCircleOutline"></ion-icon>
@@ -10,9 +10,8 @@
 <script setup lang="ts">
     import { IonButton, IonIcon } from '@ionic/vue';
     import { addCircleOutline } from 'ionicons/icons';
-    import { useRouter } from 'vue-router';
 
-    const router = useRouter();
+    const emit = defineEmits(['click']);
 </script>
 
 <style scoped>

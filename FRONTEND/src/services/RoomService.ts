@@ -45,3 +45,17 @@ export async function deleteRoom(id: number): Promise<void> {
 
     return Promise.reject('error');
 }
+
+export async function createRoom(room: Room): Promise<Room> {
+    try {
+        const result = await http.post<Room>('/rooms', { ...room, available: true });
+
+        if (result.status === 200)
+            return Promise.resolve(result.data);
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}

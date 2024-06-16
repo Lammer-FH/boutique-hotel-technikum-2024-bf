@@ -10,7 +10,8 @@
         </ion-header>
         <ion-content :fullscreen="true">
             <div class="controls">
-                <AddRoomButton />
+                <AddRoomButton @click="openAddRoomModal" />
+                <AddRoomModal v-model="isAddRoomModalOpen" />
             </div>
             <RoomList :isAdmin="true" />
         </ion-content>
@@ -20,8 +21,16 @@
 <script setup lang="ts">
     import BackButton from '../shared/BackButton.vue';
     import AddRoomButton from './AddRoomButton.vue';
-    import RoomList from '../shared/room-list/RoomList.vue';
+    import AddRoomModal from './add-room/AddRoomModal.vue';
+    import RoomList from '@/components/shared/room-list/RoomList.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
+    import { ref } from 'vue';
+
+    const isAddRoomModalOpen = ref<boolean>(false);
+
+    function openAddRoomModal() {
+        isAddRoomModalOpen.value = true;
+    }
 </script>
 
 <style scoped>

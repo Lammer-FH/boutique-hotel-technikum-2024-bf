@@ -1,8 +1,8 @@
 <template>
     <ion-card>
         <ion-card-content>
-            <NameField label="Vorname" v-model="firstName" @isValid="updateIsFirstNameValid" />
-            <NameField label="Nachname" v-model="lastName" @isValid="updateIsLastNameValid" />
+            <TextField label="Vorname" v-model="firstName" @isValid="updateIsFirstNameValid" />
+            <TextField label="Nachname" v-model="lastName" @isValid="updateIsLastNameValid" />
             <EmailField v-model="email" @isValid="updateIsEmailValid" />
             <PasswordField v-model="password" @isValid="updateIsPasswordValid" />
             <PasswordConfirmField :password="password" @isValid="updateIsPasswordConfirmValid" />
@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
     import { IonCard, IonCardContent, IonButton } from '@ionic/vue';
-    import NameField from './fields/NameField.vue';
+    import TextField from '@/components/shared/fields/TextField.vue';
     import EmailField from './fields/EmailField.vue';
     import PasswordField from './fields/PasswordField.vue';
     import PasswordConfirmField from './fields/PasswordConfirmField.vue';
-    import { useUserStore } from '../../stores/user';
+    import { useUserStore } from '@/stores/user';
     import { computed, ref, toRefs } from 'vue';
     import { useRouter } from 'vue-router';
 

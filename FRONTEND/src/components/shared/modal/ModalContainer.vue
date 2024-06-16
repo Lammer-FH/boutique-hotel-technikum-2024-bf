@@ -38,8 +38,8 @@
     }
 
     function confirm(): void {
-        setOpen(false);
         emit('confirm');
+        setOpen(false);
     }
 
     function setOpen(open: boolean) {
