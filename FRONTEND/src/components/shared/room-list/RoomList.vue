@@ -25,13 +25,17 @@
     import PageControls from './PageControls.vue';
     import SkeletonCard from './SkeletonCard.vue';
     import { useRoomsStore } from '@/stores/rooms';
+    import { useAdminStore } from '@/stores/admin';
     import { onMounted, ref } from 'vue';
 
-    const roomsStore = useRoomsStore();
 
-    defineProps<{
+    const props = defineProps<{
         isAdmin: boolean;
     }>();
+
+    const roomsStore = props.isAdmin
+        ? useAdminStore()
+        : useRoomsStore();
 
     const isLoading = ref(true);
 
