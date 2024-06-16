@@ -6,13 +6,13 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <RoomList :isAdmin="false" />
+            <BookingList />
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import RoomList from '@/components/shared/room-list/RoomList.vue'
+    import BookingList from '@/components/booking/BookingList.vue'
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 </script>
 

@@ -42,6 +42,20 @@ export async function createBooking(booking: Booking): Promise<Booking> {
     return Promise.reject('error');
 }
 
+export async function fetchBookings(): Promise<Booking[]> {
+    try {
+        const result = await http.get<Booking[]>('/bookings');
+
+        if (result.status === 200)
+            return Promise.resolve(result.data);
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}
+
 function formatDate(date: Date) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
