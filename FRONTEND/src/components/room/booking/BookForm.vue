@@ -9,15 +9,20 @@
                 <ion-label>Bis</ion-label>
                 <DatePicker v-model="endDate" :min="minEndDate" id="endDate" />
             </div>
-            <div class="status-icon">
+            <div class="ceneterd-container">
                 <StatusIcon :value="isAvailable" :loading="isLoading" />
+            </div>
+            <div v-if="!isRegistered" class="ceneterd-container">
+                <ion-text color="danger">
+                    <p>User muss registriert sein</p>
+                </ion-text>
             </div>
         </ion-card-content>
     </ion-card>
 </template>
 
 <script setup lang="ts">
-    import { IonCard, IonCardContent, IonLabel } from '@ionic/vue';
+    import { IonCard, IonCardContent, IonLabel, IonText } from '@ionic/vue';
     import DatePicker from './DatePicker.vue';
     import StatusIcon from './StatusIcon.vue';
     import { onMounted, watch, toRefs } from 'vue';
@@ -25,6 +30,7 @@
 
     const props = defineProps<{
         room: Room;
+        isRegistered: boolean;
     }>();
 
     const bookingStore = useBookingStore();
@@ -59,7 +65,7 @@
         align-items: center;
         width: 100%;
     }
-    .status-icon {
+    .ceneterd-container {
         width: 100%;
         display: inline-flex;
         justify-content: center;

@@ -48,5 +48,15 @@ export const useRoomsStore = defineStore('rooms', () => {
         }
     }
 
-    return { rooms, fetchRooms, deleteRoom, createRoom, currentPage, incrementPage, decrementPage, isFirstPage, isLastPage };
+    return {
+        rooms,
+        fetchRooms,
+        deleteRoom,
+        createRoom,
+        currentPage,
+        incrementPage,
+        decrementPage,
+        isFirstPage,
+        isLastPage
+    };
 });

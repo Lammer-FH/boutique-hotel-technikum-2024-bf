@@ -39,5 +39,14 @@ export const useUserStore = defineStore('user', () => {
         email.value = '';
     }
 
-    return { user, password, firstName, lastName, email, register, logout, isRegistered };
+    return {
+        user,
+        password,
+        firstName,
+        lastName,
+        email,
+        register,
+        logout,
+        isRegistered
+    };
 });

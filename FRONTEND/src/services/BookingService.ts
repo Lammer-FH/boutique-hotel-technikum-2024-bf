@@ -1,4 +1,5 @@
 import http from '@/axios';
+import { Booking } from '@/types/Booking';
 
 export async function fetchIsAvailable(roomId: number, startDate: Date, endDate: Date): Promise<boolean> {
     const startDateString = formatDate(startDate);
@@ -8,6 +9,28 @@ export async function fetchIsAvailable(roomId: number, startDate: Date, endDate:
             '/bookings/availability',
             { params: { roomId, startDate: startDateString, endDate: endDateString } }
         );
+
+        if (result.status === 200)
+            return Promise.resolve(result.data);
+    } catch (error) {
+        console.error('error', error)
+        return Promise.reject(error);
+    }
+
+    return Promise.reject('error');
+}
+
+export async function createBooking(booking: Booking): Promise<Booking> {
+    const startDateString = formatDate(booking.startDate);
+    const endDateString = formatDate(booking.endDate);
+    const newBooking = {
+        ...booking,
+        startDate: startDateString,
+        endDate: endDateString
+    };
+
+    try {
+        const result = await http.post<Booking>('/bookings', newBooking);
 
         if (result.status === 200)
             return Promise.resolve(result.data);

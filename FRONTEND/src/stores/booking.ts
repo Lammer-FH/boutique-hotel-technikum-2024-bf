@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import * as bookingService from '@/services/BookingService';
+import { Booking } from '@/types/Booking';
+import { User } from '@/types/User';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
@@ -30,6 +32,28 @@ export const useBookingStore = defineStore('booking', () => {
         isLoading.value = false;
     }
 
+    async function createBooking(user: User, roomId: number) {
+        const booking: Booking = {
+            breakfast: true,
+            startDate: startDate.value,
+            endDate: endDate.value,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            roomId: roomId,
+            userId: 1, // FIXME: This is a hack for now
+        };
+        try {
+            const createdBooking = await bookingService.createBooking(booking);
+            isAvailable.value = false;
+            return createdBooking;
+        }
+        catch (error) {
+            console.error('error', error);
+            return Promise.reject(error);
+        }
+    }
+
     function addDays(date: Date, days: number) {
         return new Date(date.valueOf() + days * ONE_DAY);
     }
@@ -41,6 +65,7 @@ export const useBookingStore = defineStore('booking', () => {
         endDate,
         minStartDate,
         minEndDate,
-        fetchAvailability
+        fetchAvailability,
+        createBooking,
     };
 });
