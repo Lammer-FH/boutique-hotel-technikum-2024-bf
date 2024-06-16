@@ -4,7 +4,6 @@
             <ion-toolbar>
                 <ion-title>Home</ion-title>
                 <ion-buttons slot="end">
-                    <AdminButton />
                     <RegisterButton />
                 </ion-buttons>
             </ion-toolbar>
@@ -17,7 +16,6 @@
 
 <script setup lang="ts">
     import RoomList from '@/components/shared/room-list/RoomList.vue'
-    import AdminButton from '@/components/home/AdminButton.vue';
     import RegisterButton from '@/components/home/RegisterButton.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
 </script>

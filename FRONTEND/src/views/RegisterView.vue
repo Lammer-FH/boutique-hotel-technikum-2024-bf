@@ -15,8 +15,8 @@
 </template>
 
 <script setup lang="ts">
-    import RegisterForm from './RegisterForm.vue';
-    import BackButton from '../shared/BackButton.vue';
+    import RegisterForm from '@/components/register/RegisterForm.vue';
+    import BackButton from '@/components/shared/BackButton.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
 </script>
 

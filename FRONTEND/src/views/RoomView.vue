@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-    import RoomDetail from './RoomDetail.vue';
-    import BookingModal from './BookingModal.vue';
-    import BackButton from '../shared/BackButton.vue';
+    import RoomDetail from '@/components/room/RoomDetail.vue';
+    import BookingModal from '@/components/room/BookingModal.vue';
+    import BackButton from '@/components/shared/BackButton.vue';
     import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
-    import { useRoomStore } from '../../stores/room';
+    import { useRoomStore } from '@/stores/room';
     import { onMounted, watch, ref } from 'vue';
     import { useRoute } from 'vue-router';
 

@@ -16,10 +16,10 @@
 </template>
 
 <script setup lang="ts">
-    import AddRoomButton from './AddRoomButton.vue';
-    import AddRoomModal from './add-room/AddRoomModal.vue';
+    import AddRoomButton from '@/components/admin/AddRoomButton.vue';
+    import AddRoomModal from '@/components/admin/add-room/AddRoomModal.vue';
     import RoomList from '@/components/shared/room-list/RoomList.vue';
-    import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/vue';
+    import { IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
     import { ref } from 'vue';
 
     const isAddRoomModalOpen = ref<boolean>(false);
