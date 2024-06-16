@@ -21,7 +21,7 @@
     import DatePicker from './DatePicker.vue';
     import StatusIcon from './StatusIcon.vue';
     import { onMounted, watch, toRefs } from 'vue';
-    import { useBookingStore } from '../../../stores/booking';
+    import { useBookingStore } from '@/stores/booking';
 
     const props = defineProps<{
         room: Room;

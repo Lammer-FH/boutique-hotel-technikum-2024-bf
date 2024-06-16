@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { Room } from '../types/Room';
+import { Room } from '@/types/Room';
 import { computed } from 'vue';
-import * as roomsService from '../services/RoomService';
+import * as roomsService from '@/services/RoomService';
 
 export const useRoomsStore = defineStore('rooms', () => {
     const PAGE_SIZE = 10;

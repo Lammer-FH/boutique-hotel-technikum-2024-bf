@@ -1,4 +1,4 @@
-import http from '../axios';
+import http from '@/axios';
 
 export async function fetchIsAvailable(roomId: number, startDate: Date, endDate: Date): Promise<boolean> {
     const startDateString = formatDate(startDate);

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { User } from '../types/User';
-import * as userService from '../services/UserService';
+import { User } from '@/types/User';
+import * as userService from '@/services/UserService';
 
 export const useUserStore = defineStore('user', () => {
     const password = ref<string>('');

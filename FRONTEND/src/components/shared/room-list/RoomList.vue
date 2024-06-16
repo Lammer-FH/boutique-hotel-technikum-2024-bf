@@ -24,7 +24,7 @@
     import RoomCard from './RoomCard.vue';
     import PageControls from './PageControls.vue';
     import SkeletonCard from './SkeletonCard.vue';
-    import { useRoomsStore } from '../../../stores/rooms';
+    import { useRoomsStore } from '@/stores/rooms';
     import { onMounted, ref } from 'vue';
 
     const roomsStore = useRoomsStore();

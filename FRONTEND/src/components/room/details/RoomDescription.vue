@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
     import { IonCard, IonCardContent } from '@ionic/vue';
-    import { Room } from '../../types/Room';
+    import { Room } from '@/types/Room';
     import { defineProps } from 'vue';
 
     defineProps<{

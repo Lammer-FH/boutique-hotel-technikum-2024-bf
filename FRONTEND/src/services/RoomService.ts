@@ -1,5 +1,5 @@
-import http from '../axios';
-import { Room } from '../types/Room';
+import http from '@/axios';
+import { Room } from '@/types/Room';
 
 export async function fetchRooms(page: number, size: number): Promise<Room[]> {
     try {

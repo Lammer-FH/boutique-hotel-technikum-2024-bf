@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import * as bookingService from '../services/BookingService';
+import * as bookingService from '@/services/BookingService';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 

@@ -5,11 +5,11 @@
 </template>
 
 <script setup lang="ts">
-    import { Room } from '../../types/Room';
-    import BookForm from './book/BookForm.vue';
-    import ModalContainer from '../shared/modal/ModalContainer.vue';
+    import { Room } from '@/types/Room';
+    import BookForm from './booking/BookForm.vue';
+    import ModalContainer from '@/components/shared/modal/ModalContainer.vue';
     import { defineProps } from 'vue';
-    import { useBookingStore } from '../../stores/booking';
+    import { useBookingStore } from '@/stores/booking';
 
     const isOpen = defineModel<boolean>();
 

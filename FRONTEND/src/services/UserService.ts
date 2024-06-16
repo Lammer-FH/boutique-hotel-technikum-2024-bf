@@ -1,5 +1,5 @@
-import http from '../axios';
-import { User } from '../types/User';
+import http from '@/axios';
+import { User } from '@/types/User';
 
 export async function register(user: User) {
     try {

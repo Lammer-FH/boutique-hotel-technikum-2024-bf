@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-    import { Room } from '../types/Room';
+    import { Room } from '@/types/Room';
     import {
         IonButton,
         IonCard,
