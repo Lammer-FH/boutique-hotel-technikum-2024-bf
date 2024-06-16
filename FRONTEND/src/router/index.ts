@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
+import TabNavigation from '@/components/TabNavigation.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -7,24 +8,30 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '/home'
     },
     {
-        path: '/home',
-        name: 'home',
-        component: () => import('../components/home/HomeView.vue')
-    },
-    {
-        path: '/room/:id',
-        name: 'room',
-        component: () => import('../components/room/RoomView.vue')
-    },
-    {
-        path: '/register',
-        name: 'register',
-        component: () => import('../components/register/RegisterView.vue')
-    },
-    {
-        path: '/admin',
-        name: 'admin',
-        component: () => import('../components/admin/AdminView.vue')
+        path: '/',
+        component: TabNavigation,
+        children: [
+            {
+                path: '/home',
+                name: 'home',
+                component: () => import('../components/home/HomeView.vue')
+            },
+            {
+                path: '/room/:id',
+                name: 'room',
+                component: () => import('../components/room/RoomView.vue')
+            },
+            {
+                path: '/register',
+                name: 'register',
+                component: () => import('../components/register/RegisterView.vue')
+            },
+            {
+                path: '/admin',
+                name: 'admin',
+                component: () => import('../components/admin/AdminView.vue')
+            },
+        ],
     },
     {
         path: '/:pathMatch(.*)*',

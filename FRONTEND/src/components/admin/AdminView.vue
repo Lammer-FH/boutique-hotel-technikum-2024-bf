@@ -2,9 +2,6 @@
     <ion-page>
         <ion-header :translucent="true">
             <ion-toolbar>
-                <ion-buttons slot="start">
-                    <BackButton />
-                </ion-buttons>
                 <ion-title>Admin Area</ion-title>
             </ion-toolbar>
         </ion-header>
@@ -19,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-    import BackButton from '../shared/BackButton.vue';
     import AddRoomButton from './AddRoomButton.vue';
     import AddRoomModal from './add-room/AddRoomModal.vue';
     import RoomList from '@/components/shared/room-list/RoomList.vue';
