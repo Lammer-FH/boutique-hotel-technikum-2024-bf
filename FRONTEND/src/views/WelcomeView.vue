@@ -7,13 +7,17 @@
                     <h1>Willkommen im Boutique Hotel Group BF!</h1>
                 </ion-text>
                 <ion-button @click="router.push('/home')" shape="round" fill="outline" size="large">Enter</ion-button>
+                <ion-buttons class="buttons">
+                    <ion-button @click="router.push('/impressum')">Impressum</ion-button>
+                    <ion-button @click="router.push('/about')">About</ion-button>
+                </ion-buttons>
             </div>
         </ion-content>
     </ion-page>
 </template>
 
 <script setup lang="ts">
-    import { IonContent, IonPage } from '@ionic/vue';
+    import { IonContent, IonPage, IonButtons } from '@ionic/vue';
     import { useRouter } from 'vue-router';
 
     const router = useRouter();
@@ -48,5 +52,10 @@
 
     .text {
         text-align: center;
+    }
+
+    .buttons {
+        bottom: 1rem;
+        position: absolute;
     }
 </style>
