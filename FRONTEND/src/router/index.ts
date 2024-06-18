@@ -5,7 +5,12 @@ import TabNavigation from '@/components/TabNavigation.vue';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        redirect: '/home'
+        redirect: '/welcome'
+    },
+    {
+        path: '/welcome',
+        name: 'welcome',
+        component: () => import('@/views/WelcomeView.vue')
     },
     {
         path: '/',

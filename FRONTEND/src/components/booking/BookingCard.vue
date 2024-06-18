@@ -58,4 +58,7 @@
     ion-card {
         width: var(--card-width);
     }
+    img {
+        object-fit: cover;
+    }
 </style>

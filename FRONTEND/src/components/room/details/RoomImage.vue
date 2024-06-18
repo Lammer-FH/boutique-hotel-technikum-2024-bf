@@ -7,3 +7,9 @@
 <script setup lang="ts">
     import { IonCard, } from '@ionic/vue';
 </script>
+
+<style scoped>
+    img {
+        object-fit: cover;
+    }
+</style>

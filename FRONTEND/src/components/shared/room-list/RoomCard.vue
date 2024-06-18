@@ -45,4 +45,7 @@
     ion-card {
         max-width: var(--card-width);
     }
+    img {
+        object-fit: cover;
+    }
 </style>
