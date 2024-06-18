@@ -7,6 +7,7 @@ import { User } from '@/types/User';
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
 export const useBookingStore = defineStore('booking', () => {
+    const bookingId = ref<number | undefined>(undefined);
     const isAvailable = ref(false);
     const isLoading = ref(true);
 
@@ -21,6 +22,9 @@ export const useBookingStore = defineStore('booking', () => {
         set: value => endDateHelper.value = value
     });
 
+    const startDateString = computed(() => formatDate(startDate.value));
+    const endDateString = computed(() => formatDate(endDate.value));
+
     const roomPrice = ref<number>(0);
     const totalPrice = computed(() => roomPrice.value * (endDate.value.valueOf() - startDate.value.valueOf()) / ONE_DAY);
 
@@ -33,6 +37,21 @@ export const useBookingStore = defineStore('booking', () => {
             isAvailable.value = false;
         }
         isLoading.value = false;
+    }
+
+    async function fetchConfirmation(id: number): Promise<Booking | undefined> {
+        if (!id)
+            return;
+
+        try {
+            const result = await bookingService.fetchBookingById(id);
+            startDate.value = new Date(result.startDate);
+            endDate.value = new Date(result.endDate);
+
+            return result;
+        } catch (error) {
+            console.error('error', error);
+        }
     }
 
     async function createBooking(user: User, roomId: number) {
@@ -49,6 +68,7 @@ export const useBookingStore = defineStore('booking', () => {
         try {
             const createdBooking = await bookingService.createBooking(booking);
             isAvailable.value = false;
+            bookingId.value = createdBooking.id;
             return createdBooking;
         }
         catch (error) {
@@ -61,6 +81,17 @@ export const useBookingStore = defineStore('booking', () => {
         return new Date(date.valueOf() + days * ONE_DAY);
     }
 
+    function formatDate(date: Date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${day}.${pad(month)}.${pad(year)}`;
+    }
+
+    function pad(value: number) {
+        return String(value).padStart(2, '0');
+    }
+
     return {
         isAvailable,
         isLoading,
@@ -68,9 +99,12 @@ export const useBookingStore = defineStore('booking', () => {
         endDate,
         minStartDate,
         minEndDate,
+        startDateString,
+        endDateString,
         fetchAvailability,
         createBooking,
         roomPrice,
         totalPrice,
+        fetchConfirmation,
     };
 });

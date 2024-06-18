@@ -55,6 +55,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/AboutView.vue')
     },
     {
+        path: '/confirmation/:id',
+        name: 'confirmation',
+        component: () => import('@/views/ConfirmationView.vue')
+    },
+    {
         path: '/:pathMatch(.*)*',
         redirect: '/home'
     }

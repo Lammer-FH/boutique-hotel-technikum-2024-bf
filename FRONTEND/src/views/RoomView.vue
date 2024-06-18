@@ -50,7 +50,7 @@
     });
 
     watch(() => route.params.id, async (newId) => {
-        if (newId)
+        if (newId && route.name === 'room')
             await fetchRoomData(newId);
     });
 </script>

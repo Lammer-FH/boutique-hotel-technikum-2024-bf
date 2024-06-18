@@ -82,8 +82,9 @@ export async function fetchBookingById(id: number): Promise<Booking> {
     try {
         const result = await http.get<Booking>(`/bookings/${id}/confirmation`);
 
-        if (result.status === 200)
+        if (result.status === 200) {
             return Promise.resolve(result.data);
+        }
     } catch (error) {
         console.error('error', error)
         return Promise.reject(error);

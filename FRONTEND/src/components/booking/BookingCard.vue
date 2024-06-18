@@ -15,6 +15,9 @@
         <ion-button fill="clear" @click="editBooking">
             Bearbeiten
         </ion-button>
+        <ion-button fill="clear" @click="showConfirmation">
+            Bestätigung Anzeigen
+        </ion-button>
     </ion-card>
 </template>
 
@@ -31,6 +34,9 @@
     import { useRoomStore } from '@/stores/room';
     import { computed, onMounted } from 'vue';
     import { useEditBookingStore } from '@/stores/edit-booking';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
 
     const editBookingStore = useEditBookingStore();
     const roomStore = useRoomStore();
@@ -52,6 +58,11 @@
         editBookingStore.initBooking(props.booking);
         emit('edit', props.booking);
     }
+
+    function showConfirmation() {
+        router.push(`/confirmation/${props.booking.id}`);
+    }
+
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <ModalContainer v-model="isOpen" :confirm-disabled="!bookingStore.isAvailable" @confirm="confirm" @close="cancel" :confirmLabel="confirmLabel" :cancelLabel="cancelLabel">
+    <ModalContainer v-model="isOpen" :confirm-disabled="!bookingStore.isAvailable || !userStore.isRegistered" @confirm="confirm" @close="cancel" :confirmLabel="confirmLabel" :cancelLabel="cancelLabel">
         <AddBookingForm v-if="showForm" :room="room" :isRegistered="userStore.isRegistered" />
         <BookingSummary v-else :room="room" />
     </ModalContainer>
@@ -13,6 +13,9 @@
     import { useBookingStore } from '@/stores/booking';
     import { useUserStore } from '@/stores/user';
     import { computed, ref } from 'vue';
+    import { useRouter } from 'vue-router';
+
+    const router = useRouter();
 
     const isOpen = defineModel<boolean>();
     const showForm = ref(true);
@@ -33,11 +36,12 @@
             showForm.value = false;
         } else {
             try {
-                await bookingStore.createBooking(userStore.user, props.room.id);
+                const booking = await bookingStore.createBooking(userStore.user, props.room.id);
+                isOpen.value = false;
+                router.push(`/confirmation/${booking.id}`);
             } catch (error) {
                 console.error('error', error);
             }
-            isOpen.value = false;
         }
     }
 
