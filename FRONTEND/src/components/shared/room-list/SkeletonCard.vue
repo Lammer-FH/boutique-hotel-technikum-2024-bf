@@ -26,3 +26,9 @@
         IonSkeletonText
     } from '@ionic/vue';
 </script>
+
+<style scoped>
+    ion-card {
+        width: var(--card-width);
+    }
+</style>

@@ -10,7 +10,9 @@
                 <AddRoomButton @click="openAddRoomModal" />
                 <AddRoomModal v-model="isAddRoomModalOpen" />
             </div>
-            <RoomList :isAdmin="true" />
+            <div class="content">
+                <RoomList :isAdmin="true" />
+            </div>
         </ion-content>
     </ion-page>
 </template>
@@ -38,5 +40,10 @@
         width: 100%;
         display: inline-flex;
         justify-content: center;
+    }
+
+    .content {
+        max-width: var(--max-content-width);
+        margin-inline: auto;
     }
 </style>

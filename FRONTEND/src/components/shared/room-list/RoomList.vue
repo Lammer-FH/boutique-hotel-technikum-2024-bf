@@ -1,17 +1,17 @@
 <template>
-    <div v-if="isLoading">
-        <div v-for="i in 10" :key="i">
-            <SkeletonCard />
+        <div v-if="isLoading" class="card-container">
+            <div v-for="i in 10" :key="i">
+                <SkeletonCard />
+            </div>
         </div>
-    </div>
-    <div v-if="roomsStore.rooms.length === 0">
-        <p>No rooms found</p>
-    </div>
-    <div v-else>
-        <div v-for="room in roomsStore.rooms" :key="room.id">
-            <RoomCard :isAdmin="isAdmin" :room="room" @delete="deleteRoom" />
+        <div v-if="roomsStore.rooms.length === 0">
+            <p>No rooms found</p>
         </div>
-    </div>
+        <div v-else class="card-container">
+            <div v-for="room in roomsStore.rooms" :key="room.id">
+                <RoomCard :isAdmin="isAdmin" :room="room" @delete="deleteRoom" />
+            </div>
+        </div>
     <PageControls
         :current-page="roomsStore.currentPage"
         :is-first-page="roomsStore.isFirstPage"
@@ -63,3 +63,13 @@
         await roomsStore.deleteRoom(id);
     }
 </script>
+
+<style scoped>
+    .card-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>

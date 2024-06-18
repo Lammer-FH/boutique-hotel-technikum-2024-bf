@@ -6,7 +6,9 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <BookingList @edit="editBooking" />
+            <div class="content">
+                <BookingList @edit="editBooking" />
+            </div>
             <EditBookingModal v-model="isEditBookingModalOpen" @close="refreshBookings" />
         </ion-content>
     </ion-page>
@@ -36,5 +38,10 @@
     ion-toolbar {
       --opacity: 0.5;
       backdrop-filter: blur(10px);
+    }
+
+    .content {
+        max-width: var(--max-content-width);
+        margin-inline: auto;
     }
 </style>

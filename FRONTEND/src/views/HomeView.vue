@@ -9,7 +9,9 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <RoomList :isAdmin="false" />
+            <div class="content">
+                <RoomList :isAdmin="false" />
+            </div>
         </ion-content>
     </ion-page>
 </template>
@@ -24,5 +26,10 @@
     ion-toolbar {
       --opacity: 0.5;
       backdrop-filter: blur(10px);
+    }
+
+    .content {
+        max-width: var(--max-content-width);
+        margin-inline: auto;
     }
 </style>

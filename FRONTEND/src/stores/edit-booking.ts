@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import * as bookingService from '@/services/BookingService';
 import { Booking } from '@/types/Booking';
-import { watchEffect } from 'vue';
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 

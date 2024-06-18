@@ -53,3 +53,9 @@
         emit('edit', props.booking);
     }
 </script>
+
+<style scoped>
+    ion-card {
+        width: var(--card-width);
+    }
+</style>

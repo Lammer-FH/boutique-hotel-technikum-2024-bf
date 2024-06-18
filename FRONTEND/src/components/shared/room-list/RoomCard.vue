@@ -40,3 +40,9 @@
     }>()
 
 </script>
+
+<style scoped>
+    ion-card {
+        max-width: var(--card-width);
+    }
+</style>

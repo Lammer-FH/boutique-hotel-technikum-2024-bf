@@ -10,7 +10,9 @@
         </ion-header>
         <ion-content :fullscreen="true">
             <div v-if="roomStore.room !== null">
-                <RoomDetail :room="roomStore.room" @click="setModelOpen(true)" />
+                <div class="content">
+                    <RoomDetail :room="roomStore.room" @click="setModelOpen(true)" />
+                </div>
                 <BookingModal :room="roomStore.room" v-model="isBookingModalOpen" @close="setModelOpen(false)" />
             </div>
         </ion-content>
@@ -57,5 +59,10 @@
     ion-toolbar {
       --opacity: 0.5;
       backdrop-filter: blur(10px);
+    }
+
+    .content {
+        max-width: var(--max-text-width);
+        margin-inline: auto;
     }
 </style>

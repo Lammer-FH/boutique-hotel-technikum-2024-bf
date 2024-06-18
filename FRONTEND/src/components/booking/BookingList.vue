@@ -2,7 +2,7 @@
     <div v-if="bookingsStore.bookings.length === 0">
         <p>No bookings found</p>
     </div>
-    <div v-else>
+    <div v-else class="card-container">
         <div v-for="booking in bookingsStore.bookings" :key="booking.id">
             <BookingCard :booking="booking" @edit="editBooking" />
         </div>
@@ -28,3 +28,13 @@
         emit('edit', booking);
     }
 </script>
+
+<style scoped>
+    .card-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+</style>

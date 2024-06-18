@@ -9,7 +9,9 @@
             </ion-toolbar>
         </ion-header>
         <ion-content :fullscreen="true">
-            <RegisterForm />
+            <div class="content">
+                <RegisterForm />
+            </div>
         </ion-content>
     </ion-page>
 </template>
@@ -24,5 +26,10 @@
     ion-toolbar {
       --opacity: 0.5;
       backdrop-filter: blur(10px);
+    }
+
+    .content {
+        max-width: var(--max-text-width);
+        margin-inline: auto;
     }
 </style>
