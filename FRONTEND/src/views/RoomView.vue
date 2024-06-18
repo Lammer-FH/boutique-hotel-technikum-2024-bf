@@ -13,7 +13,7 @@
                 <div class="content">
                     <RoomDetail :room="roomStore.room" @click="setModelOpen(true)" />
                 </div>
-                <BookingModal :room="roomStore.room" v-model="isBookingModalOpen" @close="setModelOpen(false)" />
+                <BookingModal :room="roomStore.room" v-model="isBookingModalOpen" />
             </div>
         </ion-content>
     </ion-page>

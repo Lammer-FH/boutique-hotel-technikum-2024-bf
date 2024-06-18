@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-    import { IonContent, IonPage, IonButtons } from '@ionic/vue';
+    import { IonContent, IonPage, IonButtons, IonText, IonButton } from '@ionic/vue';
     import { useRouter } from 'vue-router';
 
     const router = useRouter();

@@ -21,6 +21,9 @@ export const useBookingStore = defineStore('booking', () => {
         set: value => endDateHelper.value = value
     });
 
+    const roomPrice = ref<number>(0);
+    const totalPrice = computed(() => roomPrice.value * (endDate.value.valueOf() - startDate.value.valueOf()) / ONE_DAY);
+
     async function fetchAvailability(roomId: number) {
         isLoading.value = true;
         try {
@@ -67,5 +70,7 @@ export const useBookingStore = defineStore('booking', () => {
         minEndDate,
         fetchAvailability,
         createBooking,
+        roomPrice,
+        totalPrice,
     };
 });

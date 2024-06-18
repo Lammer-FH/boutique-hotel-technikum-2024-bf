@@ -3,11 +3,11 @@
         <ion-header>
             <ion-toolbar>
                 <ion-buttons slot="start">
-                    <ion-button @click="cancel()">Cancel</ion-button>
+                    <ion-button @click="cancel()">{{ cancelLabel }}</ion-button>
                 </ion-buttons>
                 <ion-title v-if="!!title">{{ title }}</ion-title>
                 <ion-buttons slot="end" :strong="true">
-                    <ion-button @click="confirm()" :disabled="confirmDisabled">Confirm</ion-button>
+                    <ion-button @click="confirm()" :disabled="confirmDisabled">{{ confirmLabel }}</ion-button>
                 </ion-buttons>
             </ion-toolbar>
         </ion-header>
@@ -24,28 +24,22 @@
     const emit = defineEmits(['close', 'confirm']);
 
     withDefaults(defineProps<{
+        cancelLabel?: string;
+        confirmLabel?: string;
         confirmDisabled: boolean;
         title?: string;
     }>(), {
+        cancelLabel: 'Cancel',
+        confirmLabel: 'Confirm',
         confirmDisabled: false,
         title: undefined,
     });
 
     function cancel() {
         emit('close');
-        setOpen(false);
     }
 
     function confirm(): void {
         emit('confirm');
-        setOpen(false);
-    }
-
-    function setOpen(open: boolean) {
-        isOpen.value = open;
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,5 +1,5 @@
 <template>
-    <ModalContainer v-model="isOpen" :confirm-disabled="!editBookingStore.isAvailable" @confirm="confirm" @close="emit('close')">
+    <ModalContainer v-model="isOpen" :confirm-disabled="!editBookingStore.isAvailable" @confirm="confirm" @close="cancel">
         <EditBookingForm :booking="editBookingStore.booking" />
     </ModalContainer>
 </template>
@@ -22,6 +22,12 @@
             console.error('error', error);
         }
 
+        isOpen.value = false;
+        emit('close');
+    }
+
+    function cancel() {
+        isOpen.value = false;
         emit('close');
     }
 </script>

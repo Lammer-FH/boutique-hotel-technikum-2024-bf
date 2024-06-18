@@ -1,5 +1,5 @@
 <template>
-    <ModalContainer v-model="isOpen" @confirm="confirm" :confirmDisabled="!confirmEnabled">
+    <ModalContainer v-model="isOpen" @confirm="confirm" @close="close" :confirmDisabled="!confirmEnabled">
         <AddRoomForm @confirmEnabled="updateConfirmEnabled" ref="form" />
     </ModalContainer>
 </template>
@@ -20,6 +20,10 @@
 
     async function confirm() {
         await form.value?.confirm();
+        isOpen.value = false;
+    }
+
+    function close() {
         isOpen.value = false;
     }
 </script>
