@@ -2,8 +2,8 @@
     <ion-card>
         <ion-card-content>
                 <ion-text>
-                    <p>Von: {{ startDate }}</p>
-                    <p>Bis: {{ endDate }}</p>
+                    <p>Von: {{ startDateString }}</p>
+                    <p>Bis: {{ endDateString }}</p>
                     <p>Preis: {{ bookingStore.totalPrice }} €</p>
                     <p>Extras: {{ room.extra }}</p>
                 </ion-text>
@@ -13,10 +13,10 @@
 
 <script setup lang="ts">
     import { IonCard, IonCardContent, IonText } from '@ionic/vue';
-    import { onMounted, watch, toRefs } from 'vue';
+    import { computed, toRefs } from 'vue';
     import { useBookingStore } from '@/stores/booking';
 
-    const props = defineProps<{
+    defineProps<{
         room: Room;
     }>();
 
@@ -27,13 +27,19 @@
         endDate, 
     } = toRefs(bookingStore);
 
-    watch(() => [startDate.value, endDate.value], async () => {
-        await bookingStore.fetchAvailability(props.room.id);
-    });
+    const startDateString = computed(() => formatDate(startDate.value));
+    const endDateString = computed(() => formatDate(endDate.value));
 
-    onMounted(async () => {
-        await bookingStore.fetchAvailability(props.room.id);
-    });
+    function formatDate(date: Date) {
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${day}.${pad(month)}.${pad(year)}`;
+    }
+
+    function pad(value: number) {
+        return String(value).padStart(2, '0');
+}
 </script>
 
 <style scoped>
