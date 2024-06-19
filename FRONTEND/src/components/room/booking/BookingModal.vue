@@ -11,6 +11,7 @@
     import ModalContainer from '@/components/shared/modal/ModalContainer.vue';
     import BookingSummary from './BookingSummary.vue';
     import { useBookingStore } from '@/stores/booking';
+    import { useBookingsStore } from '@/stores/bookings';
     import { useUserStore } from '@/stores/user';
     import { computed, ref } from 'vue';
     import { useRouter } from 'vue-router';
@@ -24,6 +25,7 @@
 
     const bookingStore = useBookingStore();
     const userStore = useUserStore();
+    const bookingsStore = useBookingsStore();
 
     const props = defineProps<{
         room: Room
@@ -37,6 +39,7 @@
         } else {
             try {
                 const booking = await bookingStore.createBooking(userStore.user, props.room.id);
+                await bookingsStore.fetchBookings();
                 isOpen.value = false;
                 router.push(`/confirmation/${booking.id}`);
             } catch (error) {

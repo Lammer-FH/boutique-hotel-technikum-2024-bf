@@ -15,7 +15,7 @@
     import PriceField from './fields/PriceField.vue';
     import TextareaField from './fields/TextareaField.vue';
     import { computed, ref, watchEffect } from 'vue';
-    import { useRoomsStore } from '@/stores/rooms';
+    import { useAdminStore } from '@/stores/admin';
 
     const emit = defineEmits(['confirm', 'confirmEnabled']);
 
@@ -23,7 +23,7 @@
         confirm
     });
 
-    const roomStore = useRoomsStore();
+    const roomStore = useAdminStore();
 
     const title = ref<string>('');
     const description = ref<string>('');
