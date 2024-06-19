@@ -3,14 +3,14 @@
         <img src="/img/hotel-room.jpg" alt="Room" style="width: 100%; height: 279.5px;" />
         <ion-card-header>
             <ion-card-title>
-                {{ roomStore.room?.title }}
+                {{ room?.title }}
             </ion-card-title>
             <ion-card-subtitle>
                 {{ date }}
             </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-            {{ roomStore.room?.description }}
+            {{ room?.description }}
         </ion-card-content>
         <ion-button fill="clear" @click="editBooking">
             Bearbeiten
@@ -31,15 +31,16 @@
         IonCardTitle,
         IonCardContent
     } from '@ionic/vue';
-    import { useRoomStore } from '@/stores/room';
-    import { computed, onMounted } from 'vue';
+    import { computed, onMounted, ref } from 'vue';
     import { useEditBookingStore } from '@/stores/edit-booking';
     import { useRouter } from 'vue-router';
+    import * as roomService from '@/services/RoomService';
+    import { Room } from '@/types/Room';
 
     const router = useRouter();
 
     const editBookingStore = useEditBookingStore();
-    const roomStore = useRoomStore();
+    const room = ref<Room | null>(null);
     const props = defineProps<{
         booking: Booking;
     }>()
@@ -51,7 +52,7 @@
     const emit = defineEmits(['edit'])
 
     onMounted(async () => {
-        await roomStore.fetchRoom(props.booking.roomId);
+        room.value = await roomService.fetchRoomById(props.booking.roomId);
     });
 
     function editBooking() {
